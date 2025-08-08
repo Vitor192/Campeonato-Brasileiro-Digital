@@ -1,9 +1,6 @@
 package br.com.cbf.campeonatobrasileiro.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
 
 @Entity
@@ -13,7 +10,11 @@ public class Time {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @Column(length = 20)
     private String nome;
+    @Column(length = 4)
     private String sigla;
+    @Column(length = 2)
     private String uf;
+    private String estadio;
 }
