@@ -24,7 +24,7 @@ public class TimeServico {
            entity = repository.save(entity);
             return toDto(entity);
        } else {
-           throw new Exception("Time já existe")
+           throw new Exception("Time já existe");
        }
     }
 
@@ -58,5 +58,8 @@ public class TimeServico {
         return toDto (repository.findById(id).get());
     }
 
+    public List<Time> findAll() {
+        return repository.findAll();
+    }
 
 }
