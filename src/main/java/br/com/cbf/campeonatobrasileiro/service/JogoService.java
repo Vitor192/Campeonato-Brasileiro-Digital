@@ -28,9 +28,8 @@ public class JogoService {
 
     /**
      * @param primeiraRodada Data da primeira rodada
-     * @param datasInvalidas Datas que não podem ter jogos (ex: Datas fifa)
      */
-    public void gerarJogos(LocalDateTime primeiraRodada, List<LocalDate> datasInvalidas) {
+    public void gerarJogos(LocalDateTime primeiraRodada, List<LocalDate>) {
         final List<Time> times = timeServico.findAll();
         List<Time> all1 = new ArrayList<>();
         List<Time> all2 = new ArrayList<>();
@@ -200,6 +199,26 @@ public class JogoService {
         jogo.setGolsTime2(0);
         jogo.setPublicoPagante(0);
         return jogo;
+    }
+
+    private JogoDTO entityToDTO(Jogo entity) {
+        JogoDTO dto = new JogoDTO();
+        dto.setId(entity.getId());
+        dto.setData(entity.getData());
+        dto.setEncerrado(entity.getEncerrado());
+        dto.setGolsTime1(entity.getGolsTime1());
+        dto.setGolsTime2(entity.getGolsTime2());
+        dto.setPublicoPagante(entity.getPublicoPagante());
+        dto.setRodada(entity.getRodada());
+        dto.setTime1(timeService.entityToDto(entity.getTime1()));
+        dto.setTime2(timeService.entityToDto(entity.getTime2()));
+        return dto;
+    }
+
+
+
+    public List<Jogo> obterJogos() {
+        return jogoRepository.findAll();
     }
 
 }
