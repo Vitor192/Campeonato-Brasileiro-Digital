@@ -6,10 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.boot.autoconfigure.AutoConfigureOrder;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -29,7 +26,28 @@ public class JogoRestController {
     }
 
     @GetMapping
-    public ResponseEntity<List<JogoDTO> obeterJogos() {
-        return ResponseEntity.ok().body(jogoService.obeterJogos());
+    public ResponseEntity<List<JogoDTO> obterJogo() {
+        return ResponseEntity.ok().body(jogoService.obterJogo());
     }
+
+    @PostMapping(value = "/finalizar/{id}")
+    public ResponseEntity<JogoDTO> finalizar(@PathVariable Integer id, @RequestBody JogoDTO jogoDto)throws Exception {
+        return ResponseEntity.ok().body(jogoService.finalizar(id, jogoDto));
+
+    }
+
+    /*@GetMapping(value = "/classificacao")
+    public ResponseEntity<ClassificacaoDTO> classificacao() {
+        return ResponseEntity.ok().body(jogoService.obterClassificacao());
+
+    }*/
+
+    @GetMapping(value = "/jogo/{id}")
+    public ResponseEntity<JogoDTO> obterJogo(@PathVariable Integer id) {
+        return ResponseEntity.ok().body(jogoService.obterJogo(id));
+
+    }
+
+
+
 }

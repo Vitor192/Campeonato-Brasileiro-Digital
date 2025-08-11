@@ -60,6 +60,7 @@ public class TimeServico {
 
     public List<Time> findAll() {
         return repository.findAll();
+
     }
 
 }
