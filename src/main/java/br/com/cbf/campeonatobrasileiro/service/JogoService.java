@@ -216,30 +216,6 @@ public class JogoService {
         return dto;
     }
 
-    public List<JogoDTO> listarJogos() {
-        return jogoRepository.findAll().stream().map(entity -> toDto(entity)).collect(Collectors.toList());
-    }
 
-    public JogoDTO finalizar(JogoDTO jogoDTO){
-    Optional<Jogo> optionalJogo = jogoRepository.findById(id).get();
-    if (optionalJogo.isPresent()) {
-        final Jogo jogo = optionalJogo.get();
-        jogo.setGolsTime1(jogoDTO.getGolsTime1());
-        jogo.setGolsTime2(jogoDTO.getGolsTime2());
-        jogo.setEncerrado(true);
-        jogo.setPublicoPagante(jogoDTO.getPublicoPagante());
-        return toDto(jogoRepository.save(jogo));
-      } else {
-        throw new Exception("Jogo não existe);
-      }
-    }
-
-    public Object obterClassificacao() {
-
-    }
-
-    public JogoDTO obterJogo(Integer id) {
-        return toDto(jogoRepository.findById(id).get());
-    }
 
 }
